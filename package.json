@@ -1,7 +1,7 @@
 {
     "name": "wearable-technology",
     "version": "1.0.0",
-    "description": "《可穿戴科技》网页构建脚本",
+    "description": "网页构建脚本",
     "main": "builder/index.js",
     "scripts": {
         "compileTypeScriptOnce": "tsc",
