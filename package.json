@@ -1,0 +1,63 @@
+{
+    "name": "wearable-technology",
+    "version": "1.0.0",
+    "description": "《可穿戴科技》网页构建脚本",
+    "main": "builder/index.js",
+    "scripts": {
+        "compileTypeScriptOnce": "tsc",
+        "buildChaptersProduction": "node ts-out/builder/index.js --production",
+        "buildWebScript": "browserify ts-out/web/index.js -o dist/bundle.max.js",
+        "minifyWebScript": "terser dist/bundle.max.js --compress --mangle --keep-fnames -o dist/bundle.js",
+        "buildStyle": "lessc src/style/index.less dist/index.css",
+        "build": "run-s compileTypeScriptOnce buildStyle buildChaptersProduction buildWebScript minifyWebScript",
+        "buildChaptersDev": "node ts-out/builder/index.js",
+        "dev-watch-staticServer": "cd dist && static-server -p 2333 -o --no-cache",
+        "dev-watch-staticFileCopier": "fucking-fixed-sync-files --watch --no-delete static dist",
+        "dev-watch-typescript": "tsc --watch --preserveWatchOutput",
+        "dev-watch-browserify": "watchify ts-out/web/index.js -o dist/bundle.js",
+        "dev-watch-chapterRebuilder": "chokidar \"./chapters/**/*\" \"./ts-out/builder/**/*\" -c \"npm run buildChaptersDev\"",
+        "dev-watch-styleRebuilder": "chokidar \"./src/style/**/*\" -c \"npm run buildStyle\"",
+        "watch": "run-s compileTypeScriptOnce buildStyle && npm run buildChaptersDev && concurrently -n --kill-others npm:dev-watch-*",
+        "lint": "tslint --project ./",
+        "vscode-problems": "tsc --watch --noEmit",
+        "deobfuscate-resources": "node src/wtobfs.js deobfuscate \"chapters/**/*.obfs\"",
+        "generate-readme": "tsc && node ts-out/generateReadme.js"
+    },
+    "bin": {
+        "wtobfs": "src/wtobfs.js"
+    },
+    "author": "SCLeo",
+    "license": "CC-BY-NC-ND-4.0",
+    "repository": "github:SCLeoX/Wearable-Technology",
+    "dependencies": {
+        "@types/fs-extra": "^9.0.1",
+        "@types/markdown-it": "10.0.2",
+        "@types/node": "^14.6.4",
+        "browserify": "^16.5.2",
+        "colorworks": "^1.1.1",
+        "fs-extra": "^9.0.1",
+        "hyperscript": "^2.0.2",
+        "markdown-it": "^11.0.0",
+        "markdown-it-replace-link": "^1.1.0",
+        "markdown-it-ruby": "^0.1.1",
+        "terser": "^5.0.0",
+        "typescript": "^4.0.2",
+        "unistring": "github:akahuku/unistring#master",
+        "yargs": "^15.4.1"
+    },
+    "devDependencies": {
+        "@types/css-font-loading-module": "0.0.4",
+        "@types/hyperscript": "0.0.4",
+        "@types/yargs": "^15.0.5",
+        "chokidar-cli": "^2.0.0",
+        "concurrently": "^5.3.0",
+        "csscomb": "^4.3.0",
+        "fucking-fixed-sync-files": "^1.0.1",
+        "less": "^3.12.2",
+        "npm-run-all": "^4.1.5",
+        "open-cli": "^6.0.1",
+        "static-server": "^2.2.1",
+        "tslint": "^6.1.3",
+        "watchify": "^3.11.1"
+    }
+}

@@ -1,0 +1,6 @@
+[submodule "chapters/7 - 插图"]
+	path = chapters/7 - 插图
+	url = ../wearable-technology-illustrations.git
+[submodule "chapters/2 - 支线/0.0 - 可穿戴科技 · Alter"]
+	path = chapters/2 - 支线/0.0 - 可穿戴科技 · Alter
+	url = ../../FriendlyBianca/wearable-technology-alter.git
