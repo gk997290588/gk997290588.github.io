@@ -20,10 +20,7 @@
 
 title: Monos
 #email: ejjoo7994@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Themed by ejjoo
-  baseurl: "/" # the subpath of your site, e.g. /blog
-  url: "http://gk99790588.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+description: >-
 github_username: YnoAOI
 highlighter: rouge
 svg:
